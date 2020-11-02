@@ -1,4 +1,5 @@
 ﻿using Interfaces2.Entities;
+using Interfaces2.Services;
 using System;
 using System.Globalization;
 
@@ -21,10 +22,11 @@ namespace Interfaces2
             Console.Write("Enter the number of installments: ");
             int installments = int.Parse(Console.ReadLine());
 
-            contract.Installments(installments);
+            ContractService contractService = new ContractService(new PaypalService());
+            contractService.ProcessPayables(contract, installments);
 
             Console.WriteLine("Installments:");
-            foreach (Installment x in contract._installment)
+            foreach (Installment x in contract.Installment)
             {
                 Console.WriteLine(x);
             }

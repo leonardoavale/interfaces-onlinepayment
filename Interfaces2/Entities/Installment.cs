@@ -1,28 +1,27 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Interfaces2.Entities
 {
     class Installment
     {
 
-        public DateTime _dueDate { get; set; }
-        public Contract _contract { get; set; }
-        public double _amount { get; set; }
+        public DateTime DueDate { get; set; }
+        public double Amount { get; set; }
 
 
-        public Installment(DateTime dueDate, double amount, Contract contract)
+        public Installment(DateTime dueDate, double amount)
         {
-            _dueDate = dueDate;
-            _contract = contract;
-            _amount = amount;
-            
+            DueDate = dueDate;
+            Amount = amount;
+
         }
 
         public override string ToString()
         {
-            return _dueDate
+            return DueDate.ToString("dd/MM/yyyy")
                 + " - "
-                + _amount;
+                + Amount.ToString("F2", CultureInfo.InvariantCulture);
         }
 
     }
